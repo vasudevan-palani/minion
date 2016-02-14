@@ -1,0 +1,21 @@
+<?php
+
+class ArticlesTable extends Table
+{
+
+    public function initialize(array $config)
+    {
+        $this->hasMany('Comments', [
+            'className' => 'Comments',
+            'conditions' => ['approved' => true]
+        ]);
+
+        $this->hasMany('UnapprovedComments', [
+            'className' => 'Comments',
+            'conditions' => ['approved' => false],
+            'propertyName' => 'unapproved_comments'
+        ]);
+    }
+}
+
+?>
